@@ -1,15 +1,27 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class Estudiante{
     private String nombre;
     private String apellido;
     private int edad;
     private String carrera;
     private  float promedio;
+    private List<Materia> materias;
 
     public Estudiante() {
 
     }
 
     public Estudiante(String nombre, String apellido, int edad, String carrera, float promedio){
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.edad = edad;
+        this.carrera = carrera;
+        this.promedio = promedio;
+        this.materias = new ArrayList<>();
+    }
+    public Estudiante(String nombre, String apellido, int edad, String carrera, float promedio, List<Materia> materias){
         this.nombre = nombre;
         this.apellido = apellido;
         this.edad = edad;
@@ -50,6 +62,19 @@ public class Estudiante{
     }
     public void setPromedio(float promedio){
         this.promedio = promedio;
+    }
+
+    public void agregarMateria(Materia materia){
+        this.materias.add(materia);
+    }
+
+    public void calcularPromedio(){
+        float notas = 0;
+        for(int i = 0; i<materias.size() ; i++){
+           notas+= materias.get(i).getCalificacion();
+        }
+
+        this.promedio = notas / materias.size();
     }
 }
 
